@@ -64,4 +64,74 @@ System.out.println("user logged in");
     @And("user enters invalid <password>")
     public void userEntersInvalidPassword() {
     }
+
+    @Given("user is on the login page")
+    public void userIsOnTheLoginPage() {
+    }
+
+    @Then("user should see discuss page ")
+    public void userShouldSeeDiscussPage(String arg0) throws Throwable {
+
+    }
+
+    @When("user enters invalid <username>")
+    public void userEntersInvalidUsername() {
+    }
+
+    @And("user clicks on the log in button")
+    public void userClicksOnTheLogInButton() {
+    }
+
+    @Then("user cannot login")
+    public void userCannotLogin() {
+    }
+
+    @When("user enters empty <username>")
+    public void user_Enters_Empty_Username() {
+    }
+
+    @Then("user should see the error message")
+    public void userShouldSeeTheErrorMessage() {
+    }
+
+    @When("user enters  <username>")
+    public void user_Enters_Username() {
+    }
+
+    @And("user enters <password>")
+    public void user_Enters_Password() {
+    }
+
+    @Then("user should not be able to see the password")
+    public void userShouldNotBeAbleToSeeThePassword() {
+    }
+
+    @And("user clicks on the enter key")
+    public void userClicksOnTheEnterKey() {
+    }
+
+    @Then("user logged in the home page")
+    public void userLoggedInTheHomePage() {
+    }
+
+    @Then("user should see discuss page")
+    public void user_Should_See_DiscussPage(String arg0) throws Throwable {
+
+    }
+
+    @When("user enters invalid <username")
+    public void user_Enters_Invalid_Username() {
+    }
+
+    @When("user enters empty <username")
+    public void userEntersEmptyUsername() {
+    }
+
+    @When("user enters  <username")
+    public void userEntersUsername() {
+    }
+
+    @And("user enters <password")
+    public void userEntersPassword() {
+    }
 }

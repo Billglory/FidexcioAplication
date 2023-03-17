@@ -6,13 +6,15 @@ Feature:  Login Functionality
 
 Accounts are: posmanager, salesmanager
 
+   Background: User should access the login page
+    Given user is on the login page
+
 @FIX10-337
-  Scenario: Verify user login with valid credentials (PosManager, SalesManager)
-    Given user goes to login page
-  When user enters username
-  Then user enters password
-  And user  clicks login button
-  Then user logged in
+   Scenario: Verify user should be able to login(PosManager, SalesManager)
+    When "<user>" enter username "<username>" and password "<password>"
+    And user click on login button
+    Then user should see discuss page "<title>"
+
 
   | username                | password     |
   | salesmanager15@info.com | salesmanager |
@@ -23,7 +25,7 @@ Accounts are: posmanager, salesmanager
 
 @FIX10-338
   Scenario Outline:
-     Given user is on the login page
+
     When user enters invalid <username>
     And user enters invalid <password>
     And user clicks on the log in button
@@ -39,7 +41,7 @@ Examples:
   | salesmanager | invalidusername         | invalidpassword |
 
   @FIX10-339
-  Given user is on the login page
+
   When user enters empty <username>
   And user enters empty <password>
   And user clicks on the log in button
@@ -47,12 +49,10 @@ Examples:
 
 Examples:
   | username                | password     |
-  |                         |              |
-  | salesmanager15@info.com |              |
-  |                         | salesmanager |
+  | salesmanager15@info.com | salesmanager |
 
   @FIX10-340
-  Given user is on the login page
+
   When user enters  <username>
   And user enters <password>
   Then user should not be able to see the password
@@ -63,7 +63,7 @@ Examples:
     | salesmanager10@info.com | salesmanager |
 
   @FIX10-341
-   Given user is on the login page
+
   When user enters  <username>
   And user enters  <password>
   And user clicks on the enter key
