@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        glue = "cydeo/step_definitions",
+  glue = "fidexio/step_definitions",
         features = "@target/rerun.txt"
 )
 public class FailedTestRunner {
