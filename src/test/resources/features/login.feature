@@ -10,10 +10,11 @@ Accounts are: posmanager, salesmanager
     Given user is on the login page
 
 @FIX10-337
-   Scenario: Verify user should be able to login(PosManager, SalesManager)
-    When "<user>" enter username "<username>" and password "<password>"
-    And user click on login button
-    Then user should see discuss page "<title>"
+  Scenario: Verify user should be able to login(PosManager, SalesManager)
+  When user enters username
+  Then user enters password
+  And user clicks login button
+  Then user logged in
 
 
   | username                | password     |
@@ -23,55 +24,56 @@ Accounts are: posmanager, salesmanager
   | posmanager16@info.com   | posmanager   |
 
 
-@FIX10-338
+  @FIX10-338
   Scenario Outline:
 
-    When user enters invalid <username>
-    And user enters invalid <password>
-    And user clicks on the log in button
-    Then user cannot login
+    When  user enters wrong username
+    Then user enters wrong password
+    And user clicks login button
+    Then user cannot login warning
 
-Examples:
-  | user         | username                | password        |
-  | posmanager   | posmanager15@info.com   | invalidpassword |
-  | posmanager   | invalidusername         | posmanager      |
-  | posmanager   | invalidusername         | invalidpassword |
-  | salesmanager | salesmanager15@info.com | invalidpassword |
-  | salesmanager | invalidusername         | salesmanager    |
-  | salesmanager | invalidusername         | invalidpassword |
+    Examples:
+      | user         | username                | password        |
+      | posmanager   | posmanager15@info.com   | invalidpassword |
+      | posmanager   | invalidusername         | posmanager      |
+      | posmanager   | invalidusername         | invalidpassword |
+      | salesmanager | salesmanager15@info.com | invalidpassword |
+      | salesmanager | invalidusername         | salesmanager    |
+      | salesmanager | invalidusername         | invalidpassword |
 
-  @FIX10-339
 
-  When user enters empty <username>
-  And user enters empty <password>
+
+ @FIX10-339
+  When user enters  <username>
+  And user enters  <password>
   And user clicks on the log in button
   Then user should see the error message
 
-Examples:
-  | username                | password     |
-  | salesmanager15@info.com | salesmanager |
+    Examples:
+      | username                | password     |
+      | salesmanager15@info.com | salesmanager |
 
-  @FIX10-340
+    @FIX10-340
 
-  When user enters  <username>
-  And user enters <password>
-  Then user should not be able to see the password
+    When user enters  <username>
+    And user enters <password>
+    Then user should not be able to see the password
 
-  Examples:
-    | username                | password     |
-    | posmanager10@info.com   | posmanager   |
-    | salesmanager10@info.com | salesmanager |
+    Examples:
+      | username                | password     |
+      | posmanager10@info.com   | posmanager   |
+      | salesmanager10@info.com | salesmanager |
 
-  @FIX10-341
+    @FIX10-341
 
-  When user enters  <username>
-  And user enters  <password>
-  And user clicks on the enter key
-  Then user logged in the home page
+    When user enters  <username>
+    And user enters  <password>
+    And user clicks on the enter key
+    Then user logged in the home page
 
-  Examples:
-| user         | username                | password     |
-| posmanager   | posmanager15@info.com   | posmanager   |
-| posmanager   | posmanager16@info.com   | posmanager   |
-| salesmanager | salesmanager15@info.com | salesmanager |
-| salesmanager | salesmanager16@info.com | salesmanager |
+    Examples:
+      | user         | username                | password     |
+      | posmanager   | posmanager15@info.com   | posmanager   |
+      | posmanager   | posmanager16@info.com   | posmanager   |
+      | salesmanager | salesmanager15@info.com | salesmanager |
+      | salesmanager | salesmanager16@info.com | salesmanager |

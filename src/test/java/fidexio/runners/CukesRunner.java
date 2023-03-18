@@ -7,14 +7,16 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        plugin = {
-
-                "html:target/cucumber-report.html",
+      plugin = {
+                //"pretty",
                 "json:target/cucumber.json",
+                "html:target/cucumber-report.html",
                 "rerun:target/rerun.txt",
-                "me.jvt.cucumber.report.PrettyReports:target/cucumber"},
+                "me.jvt.cucumber.report.PrettyReports:target/cucumber",
+        },
+
         features = "src/test/resources/features",
-        glue = "com/fidexio/step_definitions",
+        glue = "fidexio/step_definitions",
         dryRun = false,
         tags = "@FIX10-257"
 
