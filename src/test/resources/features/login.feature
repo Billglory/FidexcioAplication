@@ -1,77 +1,62 @@
-@FIX10-257
-Feature:  Login Functionality
+@login @smoke
+Feature: Login Functionality
 
-  User Story:
-  As a user, I should be able to log in so that I can land on homepage.
+  User Story : As a user, I should be able to log in so that I can land on homepage.
 
-Accounts are: posmanager, salesmanager
-
-     Background: User should access the login page
+  Background: User should access the login page
     Given user is on the login page
 
-@FIX10-337
-   Scenario: Users can log in with valid credentials
-    When enters username
-    Then enters password
-    And clicks login button
-    Then user logged in
-
-  | username                | password     |
-  | salesmanager15@info.com | salesmanager |
-  | salesmanager16@info.com | salesmanager |
-  | osmanager15@info.com    | posmanager   |
-  | posmanager16@info.com   | posmanager   |
-
-
-  @FIX10-338
-  Scenario Outline:
-
- Scenario: Users cannot log in with invalid credentials
-    When  user enters wrong username
-    Then user enters wrong password
-    And user clicks login button
-    Then user cannot login warning
-
-    Examples:
-      | user         | username                | password        |
-      | posmanager   | posmanager15@info.com   | invalidpassword |
-      | posmanager   | invalidusername         | posmanager      |
-      | posmanager   | invalidusername         | invalidpassword |
-      | salesmanager | salesmanager15@info.com | invalidpassword |
-      | salesmanager | invalidusername         | salesmanager    |
-      | salesmanager | invalidusername         | invalidpassword |
-
- @FIX10-339
-  When user enters  <username>
-  And user enters  <password>
-  And user clicks on the log in button
-  Then user should see the error message
-
+  Scenario Outline: User should be able to login with valid credentials
+    When enter username "<username>" and password "<password>"
+    And user click on login button
+    Then user should see discuss page
     Examples:
       | username                | password     |
-      | salesmanager15@info.com | salesmanager |
+      | salesmanager20@info.com | salesmanager |
+      | salesmanager21@info.com | salesmanager |
+      | posmanager20@info.com   | posmanager   |
+      | posmanager21@info.com   | posmanager   |
 
-    @FIX10-340
+  Scenario Outline: Verify "Wrong login/password" message is displayed using invalid credentials
+    When enter username "<username>" and password "<password>"
+    And user click on login button
+    Then User should see“Wrong login password“ message.
+    Examples:
+      | username                | password        |
+      | posmanager20@info.com   | invalidpassword |
+      | invalidusername         | posmanager      |
+      | invalidusername         | invalidpassword |
+      | salesmanager20@info.com | invalidpassword |
+      | invalidusername         | salesmanager    |
+      | invalidusername         | invalidpassword |
 
-    When user enters  <username>
-    And user enters <password>
-    Then user should not be able to see the password
-
+  Scenario Outline: Verify "Please fill out this field" message is displayed.
+    When enter username "<username>" and password "<password>"
+    And user click on login button
+    Then user should see the “Please fill out this field”message
     Examples:
       | username                | password     |
-      | posmanager10@info.com   | posmanager   |
-      | salesmanager10@info.com | salesmanager |
+      | posmanager20@info.com   |              |
+      |                         | posmanager   |
+      | salesmanager20@info.com |              |
+      |                         | salesmanager |
 
-    @FIX10-341
-
-    When user enters  <username>
-    And user enters  <password>
-    And user clicks on the enter key
-    Then user logged in the home page
-
+  Scenario Outline: Verify that user see the password in bullet signs by default
+    When enter username "<username>" and password "<password>"
+    Then user should see the password in bullet signs
     Examples:
-      | user         | username                | password     |
-      | posmanager   | posmanager15@info.com   | posmanager   |
-      | posmanager   | posmanager16@info.com   | posmanager   |
-      | salesmanager | salesmanager15@info.com | salesmanager |
-      | salesmanager | salesmanager16@info.com | salesmanager |
+      | username                | password     |
+      | posmanager20@info.com   | posmanager   |
+      | salesmanager20@info.com | salesmanager |
+
+  Scenario Outline: Verify if the ‘Enter’ key of the keyboard is working correctly on the login page
+    When enter username "<username>" and password "<password>"
+    And user uses the Enter key on keyboard to log in
+    Then user should see discuss page
+    Examples:
+      | username                | password     |
+      | salesmanager20@info.com | salesmanager |
+      | salesmanager21@info.com | salesmanager |
+      | posmanager20@info.com   | posmanager   |
+      | posmanager21@info.com   | posmanager   |
+

@@ -8,8 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
 
-
- public LoginPage() {
+    public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -30,6 +29,5 @@ public class LoginPage {
         inputUsername.sendKeys(ConfigurationReader.getProperty("username"));
         inputPassword.sendKeys(ConfigurationReader.getProperty("password"));
         loginButton.click();
-
-}
+    }
 }

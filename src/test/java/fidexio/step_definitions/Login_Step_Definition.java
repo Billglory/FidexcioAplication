@@ -154,6 +154,14 @@ public void user_logged_in(io.cucumber.datatable.DataTable dataTable) {
 
     @Then("enters password")
     public void entersPassword() {
+
     }
 
+    @When("enters username")
+    public void entersUsername() {
+    }
+
+    @And("clicks login button")
+    public void clicksLoginButton() {
+    }
 }
