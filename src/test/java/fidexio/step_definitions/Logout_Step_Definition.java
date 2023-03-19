@@ -50,4 +50,9 @@ public class Logout_Step_Definition {
     public void userCanNotAccessTheHomePageAgain() {
         Assert.assertTrue(logout.expiredAlert.isDisplayed());
     }
+
+    @Given("user is on the login page")
+    public void userIsOnTheLoginPage() {
+
+    }
 }

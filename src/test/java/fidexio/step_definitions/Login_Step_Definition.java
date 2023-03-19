@@ -14,154 +14,77 @@ import io.cucumber.java.en.And;
 
 
 public class Login_Step_Definition {
+     LoginPage login = new LoginPage();
 
-    LoginPage loginPage = new LoginPage();
-
-@Given("user goes to login page")
-public void user_goes_to_login_page() {
-  Driver.getDriver().get(ConfigurationReader.getProperty("env"));
-
-
-}
-
-    @When("{string} enter username ")
-    public void enter_username_and_password(String string, String userName) {
-   loginPage.inputUsername.sendKeys(userName);
-
-
-}
-
-    @Then("user enters password")
-    public void user_enters_password(String string, String password) {
-        loginPage.inputPassword.sendKeys(password);
+    @Given("user opens a browser and goes to login page")
+    public void user_goes_to_login_page() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
 
     }
 
-
- @When("user click on login button")
-    public void user_click_on_login_button() {
- loginPage.loginButton.click();
- }
-
-@Then("user  clicks login button")
-public void user_clicks_login_button() {
-
-}
-
-@Then("user logged in")
-public void user_logged_in(io.cucumber.datatable.DataTable dataTable) {
-  BrowserUtils.verifyTitle("#Inbox - Odoo");
-
-
-}
-
-
-    @And("user enters invalid <password>")
-    public void userEntersInvalidPassword() {
+    @When("user enters valid {string} into username input box")
+    public void user_enters_valid_into_username_input_box(String username) {
+        login.inputUsername.sendKeys(username);
     }
 
-    @Given("user is on the login page")
-    public void userIsOnTheLoginPage() {
+    @When("user enters valid password into {string} password input box")
+    public void user_enters_valid_password_into_password_input_box(String password) {
+        login.inputPassword.sendKeys(password);
     }
 
-    @Then("user should see discuss page ")
-    public void userShouldSeeDiscussPage(String arg0) throws Throwable {
+    @When("user clicks Log in button")
+    public void user_clicks_log_in_button() {
+        login.loginButton.click();
 
     }
 
-    @When("user enters invalid <username>")
-    public void userEntersInvalidUsername() {
-    }
-
-    @And("user clicks on the log in button")
-    public void userClicksOnTheLogInButton() {
-    }
-
-    @Then("user cannot login")
-    public void userCannotLogin() {
-    }
-
-    @When("user enters empty <username>")
-    public void user_Enters_Empty_Username() {
-    }
-
-    @Then("user should see the error message")
-    public void userShouldSeeTheErrorMessage() {
-    }
-
-    @When("user enters  <username>")
-    public void user_Enters_Username() {
-    }
-
-    @And("user enters <password>")
-    public void user_Enters_Password() {
-    }
-
-    @Then("user should not be able to see the password")
-    public void userShouldNotBeAbleToSeeThePassword() {
-    }
-
-    @And("user clicks on the enter key")
-    public void userClicksOnTheEnterKey() {
-    }
-
-    @Then("user logged in the home page")
-    public void userLoggedInTheHomePage() {
-    }
-
-    @Then("user should see discuss page")
-    public void user_Should_See_DiscussPage(String arg0) throws Throwable {
-
-    }
-
-    @When("user enters invalid <username")
-    public void user_Enters_Invalid_Username() {
-    }
-
-    @When("user enters empty <username")
-    public void userEntersEmptyUsername() {
+    @Then("user land on the home page")
+    public void user_land_on_the_home_page() {
+        BrowserUtils.verifyTitle("#Inbox - Odoo");
     }
 
 
-    @When("^user enters wrong username$")
-    public void userEntersWrongUsername() {
-    }
-
-    @Then("^user enters wrong password$")
-    public void userEntersWrongPassword() {
-    }
-
-    @And("^user clicks login button$")
-    public void userClicksLoginButton() {
-    }
-
-    @Then("^user cannot login warning$")
-    public void userCannotLoginWarning() {
-    }
-
-    @And("^user enters  <password>$")
-    public void user_EntersPassword() {
-    }
-
-    @When("user enters  <username>")
-    public void user_EntersUsername() {
+    @When("user enters invalid {string} or invalid {string}")
+    public void userEntersInvalidOrInvalid(String username, String password) {
+        login.inputUsername.sendKeys(username);
+        login.inputPassword.sendKeys(password);
     }
 
 
-    @And("user enters <password>")
-    public void userEntersPassword() {
-    }
-
-    @Then("enters password")
-    public void entersPassword() {
+    @Then("Wrong login password message should be displayed")
+    public void wrongLoginPasswordMessageShouldBeDisplayed() {
+        Assert.assertTrue(login.wrongAlertMessage.isDisplayed());
+        Assert.assertEquals("Wrong login/password", login.wrongAlertMessage.getText());
 
     }
 
-    @When("enters username")
-    public void entersUsername() {
+    @When("user does not enter {string} or {string}")
+    public void userDoesNotEnterOr(String username, String password) {
+        login.inputUsername.sendKeys(username);
+        login.inputPassword.sendKeys(password);
+
     }
 
-    @And("clicks login button")
-    public void clicksLoginButton() {
+    @Then("Please fill out this field message should be displayed")
+    public void pleaseFillOutThisFieldMessageShouldBeDisplayed() {
+        login.inputUsername.getAttribute("validationMessage");
+        login.inputPassword.getAttribute("validationMessage");
+
+    }
+
+    @And("user enters valid {string} password input box")
+    public void userEntersValidPasswordInputBox(String password) {
+        login.inputPassword.sendKeys(password);
+    }
+
+    @And("user clicks on the enter key on keyboard")
+    public void userClicksOnTheEnterKeyOnKeyboard() {
+        login.inputPassword.sendKeys(Keys.ENTER);
+    }
+
+    @Then("user should see password in bullet signs")
+    public void userShouldSeePasswordInBulletSigns() {
+        Assert.assertTrue(login.inputPassword.getAttribute("type").equals("password"));
     }
 }
+
