@@ -3,7 +3,6 @@ package fidexio.step_definitions;
 import fidexio.pages.LoginPage;
 import fidexio.pages.LogoutPage;
 import fidexio.utilities.BrowserUtils;
-import fidexio.utilities.ConfigurationReader;
 import fidexio.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -11,29 +10,23 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class Logout_Step_Definition {
-
-    LoginPage login = new LoginPage();
-    LogoutPage logout = new LogoutPage();
-
-    @Given("user opens a browser and goes to login page")
-    public void user_opens_a_browser_and_goes_to_login_page() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
-        login.loginMethod();
+public class Logout_StepDefinition {
+  LogoutPage logoutPage =new LogoutPage();
+    LoginPage loginPage = new LoginPage();
+    @Given("user logs in and on the home page")
+    public void userLogsInAndOnTheHomePage() {
+        loginPage.loginMethod();
     }
-    @Given("user on the discuss page")
-    public void user_logs_in_and_on_the_home_page() {
-        BrowserUtils.verifyTitle("#Inbox - Odoo");
-    }
+
     @When("User clicks profile name")
     public void userClicksProfileName() {
-        logout.profileMenu.click();
+        logoutPage.profileMenu.click();
 
     }
 
     @And("User clicks the Log out button.")
     public void userClicksTheButton() {
-        logout.logoutOption.click();
+        logoutPage.logoutOption.click();
     }
 
     @Then("User lands on the login page")
@@ -48,11 +41,6 @@ public class Logout_Step_Definition {
 
     @Then("User can not access the home page again")
     public void userCanNotAccessTheHomePageAgain() {
-        Assert.assertTrue(logout.expiredAlert.isDisplayed());
-    }
-
-    @Given("user is on the login page")
-    public void userIsOnTheLoginPage() {
-
+        Assert.assertTrue(logoutPage.expiredAlert.isDisplayed());
     }
 }

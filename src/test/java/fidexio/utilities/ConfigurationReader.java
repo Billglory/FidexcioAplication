@@ -5,8 +5,7 @@ import java.util.Properties;
 
 public class ConfigurationReader {
 
-
-    private static Properties properties = new Properties();
+  private static Properties properties = new Properties();
 
     static {
         FileInputStream file = null;
@@ -24,7 +23,8 @@ public class ConfigurationReader {
     }
 
     public static String getProperty(String key){
-        return  properties.getProperty(key);
+      return  properties.getProperty(key);
     }
+
 
 }
