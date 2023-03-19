@@ -17,3 +17,5 @@ public class BrowserUtils {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
         wait.until(ExpectedConditions.titleIs(expectedTitle));
         Assert.assertTrue(Driver.getDriver().getTitle().equals(expectedTitle));
+    }
+}

@@ -1,9 +1,5 @@
 package fidexio.step_definitions;
-import com.fidexio.pages.LoginPage;
-import com.fidexio.pages.LogoutPage;
-import com.fidexio.utilities.BrowserUtils;
-import com.fidexio.utilities.ConfigurationReader;
-import com.fidexio.utilities.Driver;
+
 import fidexio.pages.LoginPage;
 import fidexio.pages.LogoutPage;
 import fidexio.utilities.BrowserUtils;
@@ -15,7 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class Logout_StepDefinition {
+public class Logout_Step_Definition {
 
     LoginPage login = new LoginPage();
     LogoutPage logout = new LogoutPage();
