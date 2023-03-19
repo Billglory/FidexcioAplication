@@ -1,31 +1,25 @@
 package fidexio.pages;
 
-
 import fidexio.utilities.Driver;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class LogoutPage {
-public LogoutPage(){
-        PageFactory.initElements(Driver.getDriver(), this);
+    public LogoutPage() {
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(id = "login")
-    public WebElement loginUsername;
 
-    @FindBy(id = "password")
-    public WebElement loginPassword;
+    @FindBy(css = "span.oe_topbar_name")
+    public WebElement user_select_menu;
 
-    @FindBy(xpath = "//button[@type='submit']")
-    public WebElement loginButton;
+    @FindBy(xpath= "//a[.='Log out']")
+    public WebElement logout_btn;
 
-    @FindBy (xpath = "//span[.='SalesManager15']")
-    public WebElement userSign;
-
-    @FindBy(xpath = "//a[.='Log out']")
-    public WebElement logoutSign;
-
-    @FindBy(xpath = "//div[@class= 'o_dialog_warning modal-body']")
-    public WebElement warningMessage;
+    @FindBy(tagName = "h4")
+    public WebElement opps_message;
 }
