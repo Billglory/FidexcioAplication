@@ -9,17 +9,16 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class LogoutPage {
-    public LogoutPage() {
+ public LogoutPage() {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    @FindBy(xpath ="//span[@class='oe_topbar_name']")
+    public WebElement profileMenu;
 
-    @FindBy(css = "span.oe_topbar_name")
-    public WebElement user_select_menu;
+    @FindBy(linkText = "Log out")
+    public WebElement logoutOption;
 
-    @FindBy(xpath= "//a[.='Log out']")
-    public WebElement logout_btn;
-
-    @FindBy(tagName = "h4")
-    public WebElement opps_message;
+    @FindBy(className = "modal-title")
+    public WebElement expiredAlert;
 }

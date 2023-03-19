@@ -1,31 +1,21 @@
 package fidexio.utilities;
 
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
-
-
 
     /*
     Creating a private constructor, so we are closing
@@ -90,7 +80,7 @@ public class Driver {
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
-                 break;
+                    break;
                 case "saucelab-chrome":
                     try{
                         URL url = new URL("https://oauth-sdetoscar-844c8:66e7117f-390e-4556-8105-07af96a01f7a@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
@@ -103,7 +93,7 @@ public class Driver {
                         e.printStackTrace();
                     }
 
-            break;
+                    break;
                 case "saucelab-edge":
                     EdgeOptions browserOptions = new EdgeOptions();
                     browserOptions.setCapability("platformName", "Windows 11");
@@ -141,5 +131,4 @@ public class Driver {
             driverPool.remove();
         }
     }
-
 }

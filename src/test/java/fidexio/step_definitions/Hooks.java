@@ -13,25 +13,48 @@ import org.openqa.selenium.TakesScreenshot;
 import org.yaml.snakeyaml.events.ScalarEvent;
 
 public class Hooks {
-//    @Before(order = 2)
-//    public static void setupScenario() {
-//        System.out.println("setting things @Before");
-//    }
+ // import from io.cucumber.java not from junit
+    // @Before (order = 0) // order ile aynı tür metodların sırası spesifikleştirilebilir.
+    public void setupScenario() { // Hooksta senaryo gerçekleşmeden önce olmasını istediğimiz metodu ekleriz. Feature sınıfındaki Background da ise "Given" vb keyword ek
+        System.out.println("========Setting up browser using cucumber @Before");
+    }
+
+    // @Before ("@login") // sadece @login ile işaretlenmiş senaryoların öncesinde çalışır
+    public void setupScenarioForLogins() {
+        System.out.println("========this will only apply to scenarios with @login_tag");
+
+    }
+
+    //  @Before ("@db") // sadece @db ile işaretlenmiş senaryoların öncesinde çalışır
+    public void setupScenarioForScenarios() {
+        System.out.println("========this will only apply to scenarios with @db_tag");
+    }
 
     @After
-    public void teardownscenario(Scenario scenario) {
-        System.out.println("---closing browser @After");
+    public void teardownScenario(Scenario scenario) {
 
-     if (scenario.isFailed()) {
-         byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-         scenario.attach(screenshot, "image/png", scenario.getName());
-     }
-  //   Driver.closeDriver();
+
+        // scenari.isFailed() --> if scenario fails this method will return TRUE boolean value
+
+        if(scenario.isFailed()){
+            byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot,"image/png",scenario.getName());
+
+        }
+
+        Driver.closeDriver();
+
     }
-//
-//    @BeforeStep
-//    public void setup() {
-//        System.out.println("before step setup @BeforeStep");
-//    }
+
+
+    // @BeforeStep
+    public void setupStep () {
+        System.out.println("------->applying setup using @BeforeStep");
+    }
+
+    //  @AfterStep
+    public void afterStep () {
+        System.out.println("-------->applying tearDown using @AfterStep");
+    }
 
 }
